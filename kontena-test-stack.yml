@@ -1,0 +1,14 @@
+stack: attxproject/kontena-test-stack
+version: 0.1.0
+description: This is a test Kontena stack
+services:
+  internet_lb:
+    image: kontena/lb:latest
+    ports:
+      - 80:80
+  web:
+    image: nginx:latest
+    environment:
+      - KONTENA_LB_INTERNAL_PORT=80
+    links:
+      - internet_lb
